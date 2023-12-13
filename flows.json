@@ -1,0 +1,513 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3cc11d24.ff01a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d75d9ce90a4c5289",
+        "type": "ros-subscribe",
+        "z": "f6f2187d.f17ca8",
+        "server": "16e32ee25193139d",
+        "topicname": "/CAN_Data",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "260f269cbdbe56b4"
+            ]
+        ]
+    },
+    {
+        "id": "9f031483db7ea1e0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "// Parse the initial JSON string to get the data field\nvar outerData = JSON.parse(msg.payload);\n\n// Now parse the data string to get the actual object\nvar innerData = JSON.parse(outerData.data);\n\n// Extract the msg_id value\nvar fl = innerData.fl;\n\n// Prepare the chart data format\nvar chartData = {\n    series: [\"front left speed\"],\n    data: [[\n        { \"x\": new Date().getTime(), \"y\": fl }\n    ]],\n    labels: [\"\"]\n};\n\n// Set the chart data as the new payload\nmsg.payload = fl;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 340,
+        "wires": [
+            [
+                "7f247208e1465a66",
+                "48a8ef8ab0b032c3"
+            ]
+        ]
+    },
+    {
+        "id": "14a6d4ab34f51f0a",
+        "type": "json",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "9f031483db7ea1e0",
+                "f372b995844454bc",
+                "cfcfaece8b94b572",
+                "c0a74053ca326513"
+            ]
+        ]
+    },
+    {
+        "id": "7f247208e1465a66",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "label": "Front Left",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-4200",
+        "ymax": "4200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 740,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f372b995844454bc",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 2",
+        "func": "// Parse the initial JSON string to get the data field\nvar outerData = JSON.parse(msg.payload);\n\n// Now parse the data string to get the actual object\nvar innerData = JSON.parse(outerData.data);\n\n// Extract the msg_id value\nvar fr = innerData.fr;\n\n// Set the chart data as the new payload\nmsg.payload = fr;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 380,
+        "wires": [
+            [
+                "644df193cb0b84b3",
+                "13cdf820fd556f08"
+            ]
+        ]
+    },
+    {
+        "id": "cfcfaece8b94b572",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 3",
+        "func": "// Parse the initial JSON string to get the data field\nvar outerData = JSON.parse(msg.payload);\n\n// Now parse the data string to get the actual object\nvar innerData = JSON.parse(outerData.data);\n\n// Extract the msg_id value\nvar rl = innerData.rl;\n\n// Prepare the chart data format\nvar chartData = {\n    series: [\"front left speed\"],\n    data: [[\n        { \"x\": new Date().getTime(), \"y\": rl }\n    ]],\n    labels: [\"\"]\n};\n\n// Set the chart data as the new payload\nmsg.payload = rl;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 420,
+        "wires": [
+            [
+                "0d93a6c93452efd5",
+                "0ab12f70dbeff56b"
+            ]
+        ]
+    },
+    {
+        "id": "c0a74053ca326513",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 4",
+        "func": "// Parse the initial JSON string to get the data field\nvar outerData = JSON.parse(msg.payload);\n\n// Now parse the data string to get the actual object\nvar innerData = JSON.parse(outerData.data);\n\n// Extract the msg_id value\nvar rr = innerData.rr;\n\n// Prepare the chart data format\nvar chartData = {\n    series: [\"front left speed\"],\n    data: [[\n        { \"x\": new Date().getTime(), \"y\": rr }\n    ]],\n    labels: [\"\"]\n};\n\n// Set the chart data as the new payload\nmsg.payload = rr;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [
+                "172f672f55320c40",
+                "8a4586082ffed72a"
+            ]
+        ]
+    },
+    {
+        "id": "644df193cb0b84b3",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 2,
+        "width": 12,
+        "height": 8,
+        "label": "Front Right",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 750,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0d93a6c93452efd5",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 3,
+        "width": 12,
+        "height": 8,
+        "label": "Rear Left",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 740,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "172f672f55320c40",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 4,
+        "width": 12,
+        "height": 8,
+        "label": "Rear Right",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 750,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48a8ef8ab0b032c3",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 5,
+        "width": 5,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Front Left",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-4200",
+        "max": "4200",
+        "colors": [
+            "#b30000",
+            "#32e600",
+            "#cb3a3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 740,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "13cdf820fd556f08",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 6,
+        "width": 5,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Front Right",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-4200",
+        "max": "4200",
+        "colors": [
+            "#b30000",
+            "#32e600",
+            "#cb3a3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 750,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "0ab12f70dbeff56b",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 7,
+        "width": 5,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Rear Left",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-4200",
+        "max": "4200",
+        "colors": [
+            "#b30000",
+            "#32e600",
+            "#cb3a3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8a4586082ffed72a",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "8021662921c7187a",
+        "order": 8,
+        "width": 5,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Rear Right",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-4200",
+        "max": "4200",
+        "colors": [
+            "#b30000",
+            "#32e600",
+            "#cb3a3a"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": true,
+        "className": "",
+        "x": 750,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "260f269cbdbe56b4",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "10",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "0.01",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": true,
+        "outputs": 1,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "14a6d4ab34f51f0a"
+            ]
+        ]
+    },
+    {
+        "id": "511d7054cea46a78",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 9,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "2df6682a6811d474",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 10,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "011eb25ecbce671e",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 11,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "466953252e1b48e7",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 12,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "16e32ee25193139d",
+        "type": "ros-server",
+        "url": "ws://172.23.0.2:9090"
+    },
+    {
+        "id": "8021662921c7187a",
+        "type": "ui_group",
+        "name": "Wheel Speed",
+        "tab": "2352467447307351",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2352467447307351",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

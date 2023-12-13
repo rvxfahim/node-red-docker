@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nodered:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ROS_MASTER_URI=http://roscore:11311
+      - FLOWS=/data/flows.json
+    networks:
+      - docker-comp_default
+    ports:
+      - "1880:1880"
+    # volumes:
+      # - nodered_data:/data
+
+networks:
+  docker-comp_default:
+    external: true
+
+# volumes:
+#   nodered_data:
