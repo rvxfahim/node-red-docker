@@ -23,7 +23,7 @@
         "server": "16e32ee25193139d",
         "topicname": "/CAN_Data",
         "x": 130,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "260f269cbdbe56b4"
@@ -42,7 +42,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 700,
         "y": 340,
         "wires": [
             [
@@ -59,8 +59,8 @@
         "property": "payload",
         "action": "str",
         "pretty": false,
-        "x": 390,
-        "y": 360,
+        "x": 530,
+        "y": 400,
         "wires": [
             [
                 "9f031483db7ea1e0",
@@ -77,7 +77,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 1,
-        "width": 12,
+        "width": 8,
         "height": 8,
         "label": "Front Left",
         "chartType": "line",
@@ -86,8 +86,8 @@
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
-        "ymin": "-4200",
-        "ymax": "4200",
+        "ymin": "",
+        "ymax": "",
         "removeOlder": 1,
         "removeOlderPoints": "",
         "removeOlderUnit": "60",
@@ -108,8 +108,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 740,
-        "y": 340,
+        "x": 940,
+        "y": 420,
         "wires": [
             []
         ]
@@ -126,7 +126,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 700,
         "y": 380,
         "wires": [
             [
@@ -147,7 +147,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 700,
         "y": 420,
         "wires": [
             [
@@ -168,7 +168,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 700,
         "y": 460,
         "wires": [
             [
@@ -184,7 +184,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 2,
-        "width": 12,
+        "width": 8,
         "height": 8,
         "label": "Front Right",
         "chartType": "line",
@@ -215,8 +215,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 750,
-        "y": 380,
+        "x": 950,
+        "y": 460,
         "wires": [
             []
         ]
@@ -228,7 +228,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 3,
-        "width": 12,
+        "width": 8,
         "height": 8,
         "label": "Rear Left",
         "chartType": "line",
@@ -259,8 +259,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 740,
-        "y": 420,
+        "x": 940,
+        "y": 500,
         "wires": [
             []
         ]
@@ -272,7 +272,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 4,
-        "width": 12,
+        "width": 8,
         "height": 8,
         "label": "Rear Right",
         "chartType": "line",
@@ -303,8 +303,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 750,
-        "y": 460,
+        "x": 950,
+        "y": 540,
         "wires": [
             []
         ]
@@ -316,7 +316,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 5,
-        "width": 5,
+        "width": "4",
         "height": 4,
         "gtype": "gage",
         "title": "Front Left",
@@ -333,8 +333,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 740,
-        "y": 180,
+        "x": 940,
+        "y": 260,
         "wires": []
     },
     {
@@ -344,7 +344,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 6,
-        "width": 5,
+        "width": "4",
         "height": 4,
         "gtype": "gage",
         "title": "Front Right",
@@ -361,8 +361,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 750,
-        "y": 220,
+        "x": 950,
+        "y": 300,
         "wires": []
     },
     {
@@ -372,7 +372,7 @@
         "name": "",
         "group": "8021662921c7187a",
         "order": 7,
-        "width": 5,
+        "width": "4",
         "height": 4,
         "gtype": "gage",
         "title": "Rear Left",
@@ -389,8 +389,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 740,
-        "y": 260,
+        "x": 940,
+        "y": 340,
         "wires": []
     },
     {
@@ -399,8 +399,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "group": "8021662921c7187a",
-        "order": 8,
-        "width": 5,
+        "order": 12,
+        "width": "4",
         "height": 4,
         "gtype": "gage",
         "title": "Rear Right",
@@ -417,8 +417,8 @@
         "seg2": "",
         "diff": true,
         "className": "",
-        "x": 750,
-        "y": 300,
+        "x": 950,
+        "y": 380,
         "wires": []
     },
     {
@@ -430,7 +430,7 @@
         "timeout": "10",
         "timeoutUnits": "milliseconds",
         "rate": "1",
-        "nbRateUnits": "0.01",
+        "nbRateUnits": "0.1",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
@@ -438,8 +438,8 @@
         "drop": true,
         "allowrate": true,
         "outputs": 1,
-        "x": 290,
-        "y": 260,
+        "x": 350,
+        "y": 400,
         "wires": [
             [
                 "14a6d4ab34f51f0a"
@@ -447,49 +447,89 @@
         ]
     },
     {
-        "id": "511d7054cea46a78",
+        "id": "a852d40cfa1a36ff",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4962f229e02385e3",
         "type": "ui_spacer",
         "z": "f6f2187d.f17ca8",
         "name": "spacer",
         "group": "8021662921c7187a",
         "order": 9,
-        "width": 4,
+        "width": 1,
         "height": 1
     },
     {
-        "id": "2df6682a6811d474",
+        "id": "4474c449324e8d07",
         "type": "ui_spacer",
         "z": "f6f2187d.f17ca8",
         "name": "spacer",
         "group": "8021662921c7187a",
         "order": 10,
-        "width": 4,
+        "width": 1,
         "height": 1
     },
     {
-        "id": "011eb25ecbce671e",
+        "id": "439c6389adbfbd67",
         "type": "ui_spacer",
         "z": "f6f2187d.f17ca8",
         "name": "spacer",
         "group": "8021662921c7187a",
         "order": 11,
-        "width": 4,
+        "width": 1,
         "height": 1
     },
     {
-        "id": "466953252e1b48e7",
+        "id": "b59e4ae048426257",
         "type": "ui_spacer",
         "z": "f6f2187d.f17ca8",
         "name": "spacer",
         "group": "8021662921c7187a",
-        "order": 12,
-        "width": 4,
+        "order": 13,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "16b07611f261e334",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 14,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "1801aeac37f39960",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 15,
+        "width": 11,
+        "height": 1
+    },
+    {
+        "id": "29fb8ae7078215fa",
+        "type": "ui_spacer",
+        "z": "f6f2187d.f17ca8",
+        "name": "spacer",
+        "group": "8021662921c7187a",
+        "order": 16,
+        "width": 11,
         "height": 1
     },
     {
         "id": "16e32ee25193139d",
         "type": "ros-server",
-        "url": "ws://172.23.0.2:9090"
+        "url": "ws://roscore:9090"
     },
     {
         "id": "8021662921c7187a",
@@ -498,8 +538,8 @@
         "tab": "2352467447307351",
         "order": 1,
         "disp": true,
-        "width": "24",
-        "collapse": false,
+        "width": "17",
+        "collapse": true,
         "className": ""
     },
     {

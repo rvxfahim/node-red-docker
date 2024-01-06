@@ -5,18 +5,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: nodered
     environment:
       - ROS_MASTER_URI=http://roscore:11311
       - FLOWS=/data/flows.json
     networks:
-      - docker-comp_default
+      - rosserial-tcp-server-docker_default
     ports:
       - "1880:1880"
     # volumes:
       # - nodered_data:/data
 
 networks:
-  docker-comp_default:
+  rosserial-tcp-server-docker_default:
     external: true
 
 # volumes:
